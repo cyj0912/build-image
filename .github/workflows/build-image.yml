@@ -1,0 +1,14 @@
+on: push
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          sudo apt-get update && sudo apt-get install -y qemu-user-static debootstrap
+          sudo debootstrap jammy /opt/rootfs http://ports.ubuntu.com/ubuntu-ports
+      - name: Publish
+        if: github.ref == 'refs/heads/master'
+        run: |
+          echo "Not publishing at this moment"
