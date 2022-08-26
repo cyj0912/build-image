@@ -39,19 +39,19 @@ sudo apt-get update && sudo apt-get install -y qemu-user-static debootstrap
 sudo debootstrap --arch=arm64 jammy ${rootfs} http://ports.ubuntu.com/ubuntu-ports
 
 # Config fstab
-p1uuid=`lsblk --fs | awk '/p1/ {print $5}'`
-p2uuid=`lsblk --fs | awk '/p2/ {print $5}'`
+p1uuid=`lsblk --fs | awk '/ESP/ $5}'`
+p2uuid=`lsblk --fs | awk '/RootFS/ {print $5}'`
 echo UUID=$p1uuid
 echo UUID=$p2uuid
-cat > ${rootfs}/etc/fstab <<EOF
+sudo cat > ${rootfs}/etc/fstab <<EOF
 UUID=$p2uuid / ext4 errors=remount-ro 0 1
 UUID=$p1uuid=0077 0 1
 EOF
 
 echo Running thirdstage.sh inside chroot
-cp thirdstage.sh ${rootfs}
-chroot ${rootfs} /bin/bash /thirdstage.sh
-rm ${rootfs}/thirdstage.sh
+sudo cp thirdstage.sh ${rootfs}
+sudo chroot ${rootfs} /bin/bash /thirdstage.sh
+sudo rm ${rootfs}/thirdstage.sh
 
 echo Unmounting ${rootfs}/boot/efi
 sudo umount ${rootfs}/boot/efi
