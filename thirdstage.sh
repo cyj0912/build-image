@@ -17,7 +17,7 @@ apt-get update
 # dpkg-reconfigure locales
 
 # D.3.5. Install a Kernel
-apt-get install -y linux-image-arm64
+apt-get install -y linux-image-generic
 
 # D.3.6. Set up the Boot Loader
 apt-get install -y grub-efi-arm64
