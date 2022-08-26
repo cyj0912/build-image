@@ -4,6 +4,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Prepare disk image
+        run: ./prepare-disk-image.sh
       - name: Build
         run: |
           sudo apt-get update && sudo apt-get install -y qemu-user-static debootstrap
@@ -11,12 +13,6 @@ jobs:
       - name: Config rootfs
         run: |
           echo lol
-      - name: Build disk image
-        run: |
-          echo lol
-      - name: Tar rootfs
-        run: |
-          tar -cjvf rootfs.tar.bz2 /opt/rootfs
       - name: Publish
         if: github.ref == 'refs/heads/master'
         run: |
