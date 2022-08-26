@@ -20,7 +20,8 @@ n
 w
 Y
 EOF
-sudo partprobe
+sudo losetup -d $device
+device=`sudo losetup -f -P --show $img`
 
 sudo mkfs.vfat ${device}p1
 sudo mkfs.ext4 ${device}p2
