@@ -43,9 +43,9 @@ p1uuid=`sudo blkid ${device}p1 -o export | grep ^UUID=`
 p2uuid=`sudo blkid ${device}p2 -o export | grep ^UUID=`
 echo ${device}p1 $p1uuid
 echo ${device}p2 $p2uuid
-cat | sudo tee ${rootfs}/etc/fstab <<EOF
-UUID=$p2uuid / ext4 errors=remount-ro 0 1
-UUID=$p1uuid=0077 0 1
+sudo tee ${rootfs}/etc/fstab <<EOF
+$p2uuid / ext4 errors=remount-ro 0 1
+$p1uuid=0077 0 1
 EOF
 
 echo Running thirdstage.sh inside chroot
