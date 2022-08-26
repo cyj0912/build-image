@@ -36,7 +36,7 @@ sudo mount ${device}p1 ${rootfs}/boot/efi
 
 # Run build step
 sudo apt-get update && sudo apt-get install -y qemu-user-static debootstrap
-sudo debootstrap --arch=arm64 --extra-suites=jammy-updates jammy ${rootfs} http://ports.ubuntu.com/ubuntu-ports
+sudo debootstrap --arch=arm64 jammy ${rootfs} http://ports.ubuntu.com/ubuntu-ports
 
 # D.3.4.2. Mount Partitions
 p1uuid=`sudo blkid ${device}p1 -o export | grep ^UUID=`
