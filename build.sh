@@ -38,12 +38,12 @@ sudo mount ${device}p1 ${rootfs}/boot/efi
 sudo apt-get update && sudo apt-get install -y qemu-user-static debootstrap
 sudo debootstrap --arch=arm64 jammy ${rootfs} http://ports.ubuntu.com/ubuntu-ports
 
-# Config fstab
-p1uuid=`lsblk --fs | awk '/ESP/ $5}'`
-p2uuid=`lsblk --fs | awk '/RootFS/ {print $5}'`
-echo UUID=$p1uuid
-echo UUID=$p2uuid
-sudo cat > ${rootfs}/etc/fstab <<EOF
+# D.3.4.2. Mount Partitions
+p1uuid=`sudo blkid ${device}p1 -o export | grep ^UUID=`
+p2uuid=`sudo blkid ${device}p2 -o export | grep ^UUID=`
+echo ${device}p1 $p1uuid
+echo ${device}p2 $p2uuid
+cat | sudo tee ${rootfs}/etc/fstab <<EOF
 UUID=$p2uuid / ext4 errors=remount-ro 0 1
 UUID=$p1uuid=0077 0 1
 EOF
