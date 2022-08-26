@@ -3,7 +3,7 @@
 img=flash.img
 rootfs=/opt/rootfs
 
-dd if=/dev/zero of=$img bs=1MB count=2048
+dd if=/dev/zero of=$img bs=1MB count=3072
 
 device=`sudo losetup -f --show $img`
 
@@ -57,11 +57,5 @@ sudo cp thirdstage.sh ${rootfs}
 sudo chroot ${rootfs} /bin/bash /thirdstage.sh
 sudo rm ${rootfs}/thirdstage.sh
 
-sudo umount ${rootfs}/proc
-sudo umount ${rootfs}/sys
-sudo umount ${rootfs}/dev
-
-echo Unmounting ${rootfs}/boot/efi
-sudo umount ${rootfs}/boot/efi
 echo Unmounting ${rootfs}
-sudo umount ${rootfs}
+sudo umount --recursive ${rootfs}
