@@ -6,7 +6,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build
         run: ./build.sh
-      - name: Publish
-        if: github.ref == 'refs/heads/master'
-        run: |
-          echo "Not publishing at this moment"
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: flash.img

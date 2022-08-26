@@ -1,6 +1,6 @@
 #!/bin/bash
 
-img=test.img
+img=flash.img
 rootfs=/opt/rootfs
 
 dd if=/dev/zero of=$img bs=1MB count=512
