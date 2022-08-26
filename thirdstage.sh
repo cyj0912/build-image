@@ -17,15 +17,15 @@ apt-get update
 # dpkg-reconfigure locales
 
 # D.3.5. Install a Kernel
-apt-get install -y linux-image-generic
+apt-get install -y linux-image-generic || exit 1
 
 # D.3.6. Set up the Boot Loader
-apt-get install -y grub-efi-arm64
-grub-install --removable
-update-grub
+apt-get install -y grub-efi-arm64 || exit 1
+# grub-install --removable || exit 1
+# update-grub || exit 1
 
 # D.3.7. Remote access: Installing SSH and setting up access
-apt-get install -y ssh
+apt-get install -y ssh || exit 1
 adduser linux
 echo Setting default passwords
 echo root:password | chpasswd
