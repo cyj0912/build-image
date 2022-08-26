@@ -48,6 +48,11 @@ UUID=$p2uuid / ext4 errors=remount-ro 0 1
 UUID=$p1uuid=0077 0 1
 EOF
 
+echo Running thirdstage.sh inside chroot
+cp thirdstage.sh ${rootfs}
+chroot ${rootfs} /bin/bash /thirdstage.sh
+rm ${rootfs}/thirdstage.sh
+
 echo Unmounting ${rootfs}/boot/efi
 sudo umount ${rootfs}/boot/efi
 echo Unmounting ${rootfs}
