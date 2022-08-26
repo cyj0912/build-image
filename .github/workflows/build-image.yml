@@ -7,7 +7,7 @@ jobs:
       - name: Build
         run: |
           sudo apt-get update && sudo apt-get install -y qemu-user-static debootstrap
-          sudo debootstrap jammy /opt/rootfs http://ports.ubuntu.com/ubuntu-ports --arch=arm64
+          sudo debootstrap --arch=arm64 jammy /opt/rootfs http://ports.ubuntu.com/ubuntu-ports
       - name: Publish
         if: github.ref == 'refs/heads/master'
         run: |
