@@ -3,7 +3,7 @@
 img=flash.img
 rootfs=/opt/rootfs
 
-dd if=/dev/zero of=$img bs=1MB count=512
+dd if=/dev/zero of=$img bs=1MB count=768
 
 device=`sudo losetup -f --show $img`
 
@@ -11,13 +11,13 @@ sudo gdisk $device <<EOF
 n
 1
 2048
-+64M
++128M
 EF00
 n
 2
 
 
-8300
+
 w
 Y
 EOF
