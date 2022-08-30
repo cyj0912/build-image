@@ -14,7 +14,7 @@ cp /tmp/sources.list /etc/apt/sources.list
 rm /tmp/sources.list
 
 apt-get update
-apt-get upgrade
+apt-get upgrade -y
 apt-get clean
 
 # D.3.4.6. Configure Locales and Keyboard
