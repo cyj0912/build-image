@@ -22,15 +22,16 @@ apt-get clean
 # dpkg-reconfigure locales
 
 # D.3.5. Install a Kernel
-apt-get install -y --no-install-recommends linux-image-generic || exit 1
+apt-get install -y --no-install-recommends linux-image-generic initramfs-tools || exit 1
 
 # D.3.6. Set up the Boot Loader
 apt-get install -y grub-efi-arm64 || exit 1
 grub-install --removable || exit 1
 update-grub || exit 1
 echo Copying DTB file into EFI partition
-for i in /lib/firmware/*/device-tree; do echo Chosen $i/rockchip/rk3399-rock-pi-4a.dtb; done;
-for i in /lib/firmware/*/device-tree; do cp $i/rockchip/rk3399-rock-pi-4a.dtb /boot/efi/; done;
+# U-boot finds dtb in the following: efi_dtb_prefixes=/ /dtb/ /dtb/current/
+for i in /lib/firmware/*/device-tree; do echo Chosen $i; done;
+for i in /lib/firmware/*/device-tree; do cp -r $i /boot/efi/dtb; done;
 
 # D.3.7. Remote access: Installing SSH and setting up access
 apt-get install -y ssh || exit 1
