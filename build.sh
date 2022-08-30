@@ -4,7 +4,7 @@ img=flash.img
 rootfs=/opt/rootfs
 
 # Prepare image
-dd if=/dev/zero of=$img bs=1048576 count=2560
+dd if=/dev/zero of=$img bs=1048576 count=3072
 device=`sudo losetup -f --show $img`
 
 sudo gdisk $device <<EOF
@@ -52,6 +52,7 @@ EOF
 sudo mount -t proc /proc ${rootfs}/proc
 sudo mount -t sysfs /sys ${rootfs}/sys
 sudo mount -o bind /dev ${rootfs}/dev
+sudo mount -o bind /dev/pts ${rootfs}/dev/pts
 
 echo Running thirdstage.sh inside chroot
 sudo cp thirdstage.sh ${rootfs}
