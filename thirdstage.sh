@@ -22,7 +22,7 @@ apt-get clean
 # dpkg-reconfigure locales
 
 # D.3.5. Install a Kernel
-apt-get install -y linux-image-generic || exit 1
+apt-get install -y --no-install-recommends linux-image-generic || exit 1
 
 # D.3.6. Set up the Boot Loader
 apt-get install -y grub-efi-arm64 || exit 1
