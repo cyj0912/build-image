@@ -50,7 +50,7 @@ EOF
 
 sudo mount -t proc /proc ${rootfs}/proc
 sudo mount -t sysfs /sys ${rootfs}/sys
-sudo mount --rbind /dev ${rootfs}/dev
+sudo mount -o bind /dev ${rootfs}/dev
 
 echo Running thirdstage.sh inside chroot
 sudo cp thirdstage.sh ${rootfs}
