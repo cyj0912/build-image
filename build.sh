@@ -61,3 +61,9 @@ sudo rm ${rootfs}/thirdstage.sh
 
 echo Unmounting ${rootfs}
 sudo umount --recursive ${rootfs}
+
+# Wrap up image
+sudo losetup -d ${device}
+echo Compressing image...
+tar -cf ${img}.tar.zstd -I"zstd -19 -T0" $img
+echo Done!
