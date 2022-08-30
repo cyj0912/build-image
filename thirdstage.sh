@@ -28,6 +28,9 @@ apt-get install -y --no-install-recommends linux-image-generic || exit 1
 apt-get install -y grub-efi-arm64 || exit 1
 grub-install --removable || exit 1
 update-grub || exit 1
+echo Copying DTB file into EFI partition
+for i in /lib/firmware/*/device-tree; do echo Chosen $i/rockchip/rk3399-rock-pi-4a.dtb; done;
+for i in /lib/firmware/*/device-tree; do cp $i/rockchip/rk3399-rock-pi-4a.dtb /boot/efi/; done;
 
 # D.3.7. Remote access: Installing SSH and setting up access
 apt-get install -y ssh || exit 1
