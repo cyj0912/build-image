@@ -37,8 +37,12 @@ for i in /lib/firmware/*/device-tree; do cp -r $i /boot/efi/dtb; done;
 apt-get install -y ssh || exit 1
 useradd -m -s /bin/bash linux
 echo Setting default passwords
+echo root:password
+echo linux:password
 echo root:password | chpasswd
 echo linux:password | chpasswd
 
 # D.3.8. Finishing touches
 apt-get clean
+
+df -h
