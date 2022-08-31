@@ -46,7 +46,7 @@ echo ${device}p1 $p1uuid
 echo ${device}p2 $p2uuid
 sudo tee ${rootfs}/etc/fstab <<EOF
 $p2uuid / ext4 errors=remount-ro 0 1
-$p1uuid /boot/efi vfat 0077 0 1
+$p1uuid /boot/efi vfat defaults 0 1
 EOF
 
 sudo mount -t proc /proc ${rootfs}/proc
