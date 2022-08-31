@@ -36,6 +36,7 @@ for i in /lib/firmware/*/device-tree; do cp -r $i /boot/efi/dtb; done;
 # D.3.7. Remote access: Installing SSH and setting up access
 apt-get install -y ssh || exit 1
 useradd -m -s /bin/bash linux
+usermod -a -G sudo linux
 echo Setting default passwords
 echo root:password
 echo linux:password
