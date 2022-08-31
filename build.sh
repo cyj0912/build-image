@@ -63,8 +63,8 @@ echo Unmounting ${rootfs}
 sudo umount --recursive ${rootfs}
 
 # Write bootloader
-wget https://beta.armbian.com/pool/main/l/linux-u-boot-rockpi-4a-edge/linux-u-boot-edge-rockpi-4a_22.08.1_arm64.deb
-dpkg-deb -R linux-u-boot-edge-rockpi-4a_22.08.1_arm64.deb uboot
+wget https://beta.armbian.com/pool/main/l/linux-u-boot-rockpi-4c-edge/linux-u-boot-edge-rockpi-4c_22.08.1_arm64.deb
+dpkg-deb -R linux-u-boot-edge-rockpi-4c_22.08.1_arm64.deb uboot
 . uboot/usr/lib/u-boot/platform_install.sh
 write_uboot_platform $PWD/uboot$DIR $device
 
