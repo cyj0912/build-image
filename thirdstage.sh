@@ -17,7 +17,7 @@ apt-get update
 apt-get upgrade -y
 apt-get clean
 
-apt-get install -y wpasupplicant hostapd
+apt-get install -y wpasupplicant hostapd iw net-tools
 
 # D.3.4.6. Configure Locales and Keyboard
 # apt-get install locales
